@@ -1,0 +1,231 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+            <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link pl-0">Home</a></li>
+            <li class="nav-item"><a href="{% url 'project_app:logout_user' %}" class="nav-link">Log out</a></li>
+            {% else %}
+            <li class="nav-item"><a href="{% url 'home' %}" class="nav-link pl-0">Home</a></li>
+            <li class="nav-item"><a href="{% url 'project_app:register' %}" class="nav-link">Sign Up</a></li>
+            <li class="nav-item"><a href="{% url 'project_app:login_user' %}" class="nav-link">Sign In</a></li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <section class="ftco-section ftco-consult ftco-no-pt ftco-no-pb" style="background-image: url({% static "images/pic-4.jpg" %});" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row justify-content-end">
+          <div class="col-md-6 py-5 px-md-5">
+            <div class="py-md-5">
+              <div class="heading-section heading-section-white ftco-animate mb-5">
+                <h2 class="mb-4">Search:</h2>
+                <p>Search for student Regiestration Form</p>
+              </div>
+              <form action="#" class="appointment-form ftco-animate" action="{% url 'project_app:search'%}" method="post">
+                {% csrf_token %}
+                <div class="d-md-flex">
+                  <div class="form-group">
+                    <input type="text"  name="srh"  placeholder="Enter Student No." class="form-control">
+                  </div>
+                </div>
+                <div class="d-md-flex">
+                  <div class="form-group ml-md-4">
+                    <button type="submit" value="Request A Quote" class="btn btn-primary py-3 px-4">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <!-- <div class="container">
+        <div class="card mb-5 mb-lg-0">
+          <form method="post" action="">
+            {% csrf_token %}
+          <div class="form-group">
+            <h5>Enter Student No.</h5>
+            <hr>
+            <label>Std No:</label>
+            <input type="text" class="form-control"  name="srh"  placeholder="Enter Student No.">
+            <hr>
+              <button type="submit"  class="btn btn-primary">search</button>
+          </form>
+</div>
+  </div>
+  </div> -->
+  {% if sr %}
+  {% for k in sr %}
+  <div class="jumbotron ">
+<section id="buy-tickets" class="section-with-bg wow fadeInUp"  data-stellar-background-ratio="0.5">
+<div class="container">
+    <div class="row">
+      <div class="card mb-5 mb-lg-0">
+        <div class="card-body">
+          <h5 class="card-title text-muted text-uppercase text-center">Regiestration Form</h5>
+          <h6 class="card-price text-center"></h6>
+          <hr>
+          <form>
+            <div class="row">
+              <div class="col-lg-4">
+                <label for="staticEmail">card number </label>
+                  <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.std_num }}">
+              </div>
+              <div class="col-lg-4">
+                <label for="staticEmail" >student name </label>
+                  <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.std_name }}">
+              </div>
+              <div class="col-lg-4">
+                <label for="staticEmail" >department code </label>
+                  <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.deptartment }}">
+              </div>
+            <div class="col-lg-4">
+              <label for="staticEmail" > year</label>
+                <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.std_year }}">
+            </div>
+            <div class="col-lg-4">
+              <label for="staticEmail" >Batch </label>
+                <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.std_name }}">
+            </div>
+            <div class="col-lg-4">
+              <label for="staticEmail" >nature of registration </label>
+                <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.std_name }}">
+            </div>
+            <div class="col-lg-4">
+              <label for="staticEmail" >Tuition fees </label>
+                <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.year_fees }}">
+            </div>
+            <div class="col-lg-4">
+              <label for="staticEmail" >Register fees </label>
+                <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.register_fees }}">
+            </div>
+            <div class="col-lg-4">
+              <label for="staticEmail" >Classroom </label>
+                <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.std_name }}">
+            </div>
+            <div class="col-lg-4">
+              <label for="staticEmail" >Semester</label>
+                <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.std_sem }}">
+            </div>
+            </div>
+          </form>
+          <hr>
+          <div class="text-center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#buy-ticket-modal" data-ticket-type="standard-access">Next </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  {% endif %}
+<!-- Modal Order Form -->
+{% if sr %}
+{% for k in sr %}
+<div id="buy-ticket-modal" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Payment</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{% url 'project_app:search'%}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label >Customer Name: </label>
+            <input type="text" class="form-control" name="name" placeholder="Customer Name">
+          </div>
+          <div class="form-group">
+            <label >Customer password: </label>
+            <input type="password" class="form-control" name="password" placeholder="Customer password">
+          </div>
+          <div class="form-group">
+            <label >Customer Acoount_num: </label>
+            <input type="password" class="form-control" name="account_no" placeholder="Customer Account_Num">
+          </div>
+          <div class="form-group">
+            <label >Student Number: </label>
+              <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.std_num }}">
+          </div>
+          <div class="form-group">
+            <label >Student Name </label>
+            <input type="text" class="form-control" name="your-email" value="{{ k.std_name }}">
+          </div>
+          <div class="form-group">
+            <label >University Account_Num: </label>
+            <input type="password" class="form-control" name="un_no" value="123">
+          </div>
+          <div class="form-group">
+            <label >Regiester Fees: </label>
+            <input type="text" readonly class="form-control" id="staticEmail" value="{{ k.register_fees }}">
+          </div>
+          <div class="form-group">
+            <label >Payment Option: </label>
+            <input type="text" class="form-control" name="your-email" placeholder="Payment option full/falf">
+          </div>
+          <div class="form-group">
+            <label >Year Fees: </label>
+            <input type="text" class="form-control" name="your-email" value="{{ k.year_fees }}">
+          </div>
+          <div class="form-group">
+            <label >Total: </label>
+            <input type="text" class="form-control" name="your-email" placeholder="Total">
+          </div>
+          <div class="form-group">
+            <label >Transaction Amount: </label>
+            <input type="text" class="form-control" name="your-email" value="{{ get_total }}" >
+          </div>
+          <div class="text-center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm" data-ticket-type="standard-access">Next </button>
+          </div>
+          <!-- <div class="text-center">
+            <button type="submit" class="btn btn-primary">payment</button>
+          </div> -->
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endfor %}
+{% endif %}
+<!--  -->
+{% if found %}
+{% for k in found %}
+<div id="confirm" class="modal fade">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Confirm</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="#">
+          <h4 >Confirm The Payment ? Yes/NO</h4>
+          <!-- <div class="text-center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirm" data-ticket-type="standard-access">Yes </button>
+          </div> -->
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Yes</button>
+            <button type="submit" class="btn btn-primary">NO</button>
+          </div>
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endfor %}
+{% endif %}
+
+</section>
+</div>
+
+{% endblock %}

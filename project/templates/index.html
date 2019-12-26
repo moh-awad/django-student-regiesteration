@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block content %}
+<div class="collapse navbar-collapse" id="ftco-nav">
+  <ul class="navbar-nav mr-auto">
+    {% if user.is_authenticated %}
+    <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link pl-0">Home</a></li>
+    <li class="nav-item"><a href="{% url 'project_app:search' %}" class="nav-link">Registration</a></li>
+    <li class="nav-item"><a href="{% url 'project_app:logout_user' %}" class="nav-link">Log out</a></li>
+    {% else %}
+    <li class="nav-item"><a href="{% url 'home' %}" class="nav-link pl-0">Home</a></li>
+    <li class="nav-item"><a href="{% url 'project_app:register' %}" class="nav-link">Sign Up</a></li>
+    <li class="nav-item"><a href="{% url 'project_app:login_user' %}" class="nav-link">Sign In</a></li>
+    {% endif %}
+  </ul>
+</div>
+</nav>
+<section class="home-slider owl-carousel">
+     <div class="slider-item" style="background-image:url({% static "images/bg_1.jpg" %});">
+       <div class="overlay"></div>
+       <div class="container">
+         <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+         <div class="col-md-6 ftco-animate">
+           <h1 class="mb-4">University Of Since And Technology</h1>
+           <p>The University of Science and Technology is located in Omdurman,
+              the largest city in Sudan and Khartoum State.
+               It aims to expand the base of computer science computer,
+               and applied science;
+                starting with the faculties of information technology,
+                computer science and computer engineering which became
+                known as the electrical and electronic engineering faculties;
+                 with four departments (communication, medical engineering,
+                 electronic and computer engineering and computer programming).</p>
+         </div>
+       </div>
+       </div>
+     </div>
+     <div class="slider-item" style="background-image:url({% static "images/bg_2.jpg" %});">
+       <div class="overlay"></div>
+       <div class="container">
+         <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+         <div class="col-md-6 ftco-animate">
+           <h1 class="mb-4">University Of Since And Technology</h1>
+           <p>The University of Science and Technology is located in Omdurman,
+              the largest city in Sudan and Khartoum State.
+               It aims to expand the base of computer science computer,
+                and applied science;
+                 starting with the faculties of information technology,
+                  computer science and computer engineering which became
+                  known as the electrical and electronic engineering faculties;
+                   with four departments (communication, medical engineering,
+              electronic and computer engineering and computer programming).</p>
+            </div>
+       </div>
+       </div>
+     </div>
+   </section>
+   <section class="ftco-section">
+     <div class="container-fluid px-4">
+       <div class="row justify-content-center mb-5 pb-2">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <h2 class="mb-4"><span>Departments</span> </h2>
+          </div>
+        </div>
+       <div class="row">
+         <div class="col-md-3 course ftco-animate">
+           <div class="img" style="background-image: url({% static "images/course-2.jpg" %});"></div>
+           <div class="text pt-4">
+             <p class="meta d-flex">
+               <span><i class="icon-table mr-2"></i>200 seats</span>
+               <span><i class="icon-calendar mr-2"></i>4 Years</span>
+             </p>
+
+             <h3><a href="#">Computer Science</a></h3>
+             <p>Program Objectives:</p>
+             <p>This program aims at qualifying cadres in the field of computer science to contribute to meet the country’s need for qualified cadres in the science and computer applications that the country needs to fill the digital gap and build the economy and the information society.</p>
+                             <p>The program also aims to graduate students who are qualified for self-learning, personal development, progress in high studies, and contribution to scientific research.</p>
+           </div>
+         </div>
+         <div class="col-md-3 course ftco-animate">
+           <div class="img" style="background-image: url({% static "images/course-4.jpg" %});"></div>
+           <div class="text pt-4">
+             <p class="meta d-flex">
+               <span><i class="icon-table mr-2"></i>200 seats</span>
+               <span><i class="icon-calendar mr-2"></i>4 Years</span>
+             </p>
+             <h3><a href="#">Information Technology</a></h3>
+             <p>Program Objectives:</p>
+
+                             <p>1. Graduation of professional and qualified cadres in information technology in both academic and professional fields, familiar with the latest technologies in information technology and their applications in the fields of knowledge and life.</p>
+
+                             <p>2. The program also aims to graduate students who are capable of self-learning, personal development, working in groups and contributing to scientific research in information technology and computing.</p>
+
+           </div>
+         </div>
+         <div class="col-md-3 course ftco-animate">
+           <div class="img" style="background-image: url({% static "images/course-8.jpg" %});"></div>
+           <div class="text pt-4">
+             <p class="meta d-flex">
+               <span><i class="icon-table mr-2"></i>200 seats</span>
+               <span><i class="icon-calendar mr-2"></i>4 Years</span>
+             </p>
+             <h3><a href="#">Information System</a></h3>
+             <p>1. This program aims to graduate qualified cadres in the information systems to meet the labor market need nowadays and in the near future, in which the expansion of the use of information systems is expected.</p>
+
+<p>To achieve this goal, the study plan was built to gain students knowledge and skills in the following areas:</p>
+
+<p>– Business and Institutional Management.</p>
+
+<p>–  Information Systems Management.</p>
+
+<p>– Development of information systems.</p>
+
+<p>2. The program also aims to graduate students who are capable of self-learning, personal development, working in groups and contributing to scientific research in information systems.</p>
+
+           </div>
+         </div>
+         <div class="col-md-3 course ftco-animate">
+           <div class="img" style="background-image: url({% static "images/course-5.jpg" %});"></div>
+           <div class="text pt-4">
+             <p class="meta d-flex">
+               <span><i class="icon-user mr-2"></i>Mr. Khan</span>
+               <span><i class="icon-table mr-2"></i>10 seats</span>
+               <span><i class="icon-calendar mr-2"></i>4 Years</span>
+             </p>
+             <h3><a href="#">Electric Engineering</a></h3>
+             <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+             <p><a href="#" class="btn btn-primary">Apply now</a></p>
+           </div>
+         </div>
+       </div>
+     </div>
+   </section>
+{% endblock %}
